@@ -42,7 +42,7 @@ export default function Products() {
                 <ul className="list-disc list-inside space-y-2">
                   <li>5 frames of bees, brood, and stores</li>
                   <li>Young, mated queen (marked and clipped)</li>
-                  <li>Disease-free certification</li>
+                  <li>Health-checked colonies</li>
                   <li>Starter colony ready to expand</li>
                   <li>Full guidance on installation and management</li>
                 </ul>

@@ -31,19 +31,23 @@ export default function About() {
               <h3 className="text-2xl font-display font-bold text-primary mb-4">Meet the Beekeeper Behind Connemara Queens</h3>
               <p className="mb-4 text-lg leading-relaxed">
                 Hi, I'm Sean Mellett — a lifelong nature enthusiast, passionate beekeeper, and proud Connemara native. 
-                My deep love for the natural world and my home landscape inspired me to create Connemara Queens, 
-                a project rooted in the conservation and careful breeding of the Native Irish Honey Bee (Apis mellifera mellifera).
+                My deep love for the natural world and the landscape I call home inspired me to create Connemara Queens — 
+                a project rooted in conservation and guided by the influence of dedicated local beekeepers like Dave Geoghegan, 
+                Paddy Finnerty, and Ger Coyne. Like them, I am committed to the careful breeding of the Native Irish Honey Bee 
+                (Apis mellifera mellifera), preserving its genetics, resilience, and gentle temperament for generations to come.
               </p>
               <p className="mb-4 text-lg leading-relaxed">
-                After many years of working with bees, I've dedicated myself to producing queens and nucleus colonies that 
-                are not only pure in genetics but also well-adapted to our unique local environment — resilient, gentle, 
-                and true to their native heritage.
+                As Chairman of the Connemara Beekeepers Association and a Diploma student in Apiculture, I've seen first-hand 
+                the importance of supporting our native bee not just for honey production, but for biodiversity and ecological balance. 
+                The queens and nucleus colonies I offer are bred from locally adapted, pure Apis mellifera mellifera stock — 
+                selected for their calm temperament, hardiness, and ability to thrive in the rugged climate of the west of Ireland. 
+                Connemara Queens is part of a broader effort to promote sustainable beekeeping, protect native genetics, and ensure 
+                our bees remain a vital part of the landscape for years to come.
               </p>
               <p className="text-lg leading-relaxed">
-                As Chairman of the Connemara Beekeepers Association and a Diploma student in Apiculture, I'm proud to 
-                contribute to the long-term survival of our native bee through education, sustainable practices, and 
-                community engagement. Connemara Queens isn't just a business — it's a commitment to preserving a living 
-                part of our natural heritage.
+                Whether you're a seasoned beekeeper or just starting out, I'd love to hear from you. Feel free to get in touch 
+                or place a deposit to reserve your Native Irish Queens or nucs for the 2026 season — and join me in supporting 
+                the future of our native bee.
               </p>
             </div>
           </div>

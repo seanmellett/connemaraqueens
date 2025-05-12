@@ -80,8 +80,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold">Location</h4>
-                    <p>Connemara Region, Co. Galway, Ireland</p>
-                    <p className="text-sm italic">(Exact apiary location provided to customers)</p>
+                    <p>Camus Oughter, Co. Galway, Ireland</p>
                   </div>
                 </div>
                 

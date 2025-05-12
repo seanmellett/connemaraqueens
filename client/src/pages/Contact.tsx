@@ -90,7 +90,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold">Phone</h4>
-                    <p>+353 (0)85 123 4567</p>
+                    <p>+353 87 326 8019</p>
                   </div>
                 </div>
                 
@@ -100,7 +100,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold">Email</h4>
-                    <p>info@connemara-queens.ie</p>
+                    <p>info@connemaraqueens.ie</p>
                   </div>
                 </div>
               </div>

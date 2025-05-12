@@ -3,6 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
+// Import bee images
+import honeycomb from "@/assets/bees/honeycomb.jpg";
+import queenWithWorkers from "@/assets/bees/queen-with-workers.jpg";
+import beeCloseup from "@/assets/bees/bee-closeup.jpg";
+
 export default function Products() {
   return (
     <section className="py-16 bg-[var(--color-neutral)]">
@@ -24,8 +29,8 @@ export default function Products() {
           {/* Nucleus Colonies */}
           <Card className="overflow-hidden shadow-lg">
             <img 
-              src="https://pixabay.com/get/gd23a0ada4c641d9ec5ecf57f86146be1a96503bf9ffb5a72e7d107c1acff748e3b811a7e81c1891762ca246be2a7358009ee06c5c9eeaec01251152add4dc6e3_1280.jpg" 
-              alt="Beekeeper inspecting nucleus colony" 
+              src={honeycomb} 
+              alt="Honeycomb structure with developing brood" 
               className="w-full h-64 object-cover"
             />
             
@@ -71,8 +76,8 @@ export default function Products() {
           {/* Queens */}
           <Card className="overflow-hidden shadow-lg">
             <img 
-              src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" 
-              alt="Queen bee surrounded by workers" 
+              src={queenWithWorkers} 
+              alt="Queen bee surrounded by worker bees" 
               className="w-full h-64 object-cover"
             />
             

@@ -6,6 +6,7 @@ import beeInGreen from "@/assets/bees/bee-in-green.jpg";
 import beeWithPollen from "@/assets/bees/bee-with-pollen.jpg";
 import beeSideView from "@/assets/bees/bee-side-view.jpg";
 import beeOnLavender2 from "@/assets/bees/bee-on-lavender2.jpg";
+import hiveEntrance from "@/assets/bees/hive-entrance.jpg";
 
 export default function About() {
   return (
@@ -65,8 +66,8 @@ export default function About() {
           
           <div className="rounded-lg overflow-hidden shadow-lg">
             <img 
-              src="https://pixabay.com/get/g2382b156152bdc4aeccc3b69fa18942512d7645f685ba56fa40bb172c79f24f6db1648c4efb1e941878f86d7c9dd12f781f5d6cf0a29d8f4040d4de0c66d3030_1280.jpg" 
-              alt="Native Irish honeybee on flower" 
+              src={beeInGreen} 
+              alt="Native Irish honeybee on rosemary" 
               className="w-full h-auto"
             />
           </div>
@@ -140,6 +141,45 @@ export default function About() {
             <div className="help-action-card">
               <h4 className="font-bold text-lg mb-2">Choose Native Bees</h4>
               <p>If you're a beekeeper, consider keeping native Irish honeybees rather than imported subspecies.</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Gallery Section */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-display font-bold text-primary mb-6 text-center">Gallery: Native Irish Honeybees</h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="overflow-hidden rounded-lg shadow-md">
+              <img 
+                src={beeSideView} 
+                alt="Profile view of a native Irish honeybee" 
+                className="w-full h-60 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            <div className="overflow-hidden rounded-lg shadow-md">
+              <img 
+                src={beeWithPollen} 
+                alt="Honeybee with pollen basket" 
+                className="w-full h-60 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            <div className="overflow-hidden rounded-lg shadow-md">
+              <img 
+                src={beeOnLavender2} 
+                alt="Honeybee foraging on lavender" 
+                className="w-full h-60 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            <div className="overflow-hidden rounded-lg shadow-md">
+              <img 
+                src={hiveEntrance}
+                alt="Honeybees at hive entrance" 
+                className="w-full h-60 object-cover hover:scale-105 transition-transform duration-300"
+              />
             </div>
           </div>
         </div>

@@ -7,6 +7,39 @@ export default function About() {
         <h2 className="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-16">
           About the Native Irish Honey Bee
         </h2>
+
+        {/* About the Beekeeper */}
+        <div className="bg-[var(--color-neutral)] p-8 rounded-lg shadow-md mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            <div className="col-span-1">
+              <img 
+                src="https://images.unsplash.com/photo-1620553967565-8e5d2e952195?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80" 
+                alt="Sean Mellett, Beekeeper" 
+                className="rounded-full w-64 h-64 object-cover mx-auto shadow-lg border-4 border-white"
+              />
+            </div>
+            
+            <div className="col-span-2">
+              <h3 className="text-2xl font-display font-bold text-primary mb-4">Meet Your Beekeeper</h3>
+              <p className="mb-4 text-lg leading-relaxed">
+                Hi, I'm Sean Mellett — a lifelong nature enthusiast, passionate beekeeper, and proud Connemara native. 
+                My deep love for the natural world and my home landscape inspired me to create Connemara Queens, 
+                a project rooted in the conservation and careful breeding of the Native Irish Honey Bee (Apis mellifera mellifera).
+              </p>
+              <p className="mb-4 text-lg leading-relaxed">
+                After many years of working with bees, I've dedicated myself to producing queens and nucleus colonies that 
+                are not only pure in genetics but also well-adapted to our unique local environment — resilient, gentle, 
+                and true to their native heritage.
+              </p>
+              <p className="text-lg leading-relaxed">
+                As Chairman of the Connemara Beekeepers Association and a Diploma student in Apiculture, I'm proud to 
+                contribute to the long-term survival of our native bee through education, sustainable practices, and 
+                community engagement. Connemara Queens isn't just a business — it's a commitment to preserving a living 
+                part of our natural heritage.
+              </p>
+            </div>
+          </div>
+        </div>
         
         {/* Overview Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">

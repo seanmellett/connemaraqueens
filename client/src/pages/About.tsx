@@ -28,7 +28,7 @@ export default function About() {
             </div>
             
             <div className="col-span-2">
-              <h3 className="text-2xl font-display font-bold text-primary mb-4">Meet Your Beekeeper</h3>
+              <h3 className="text-2xl font-display font-bold text-primary mb-4">Meet the Beekeeper Behind Connemara Queens</h3>
               <p className="mb-4 text-lg leading-relaxed">
                 Hi, I'm Sean Mellett — a lifelong nature enthusiast, passionate beekeeper, and proud Connemara native. 
                 My deep love for the natural world and my home landscape inspired me to create Connemara Queens, 

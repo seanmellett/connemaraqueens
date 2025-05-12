@@ -13,7 +13,7 @@ export default function About() {
     <section className="bg-white py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-16">
-          About the Native Irish Honey Bee
+          About Connemara Queens
         </h2>
 
         {/* About the Beekeeper */}

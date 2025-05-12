@@ -106,7 +106,7 @@ export default function Products() {
               </div>
               
               <div className="bg-[var(--color-neutral)] p-4 rounded-lg mb-6">
-                <p className="font-bold">Price: <span className="text-accent">€45 per queen</span></p>
+                <p className="font-bold">Price: <span className="text-accent">€60 per queen</span></p>
                 <p className="text-sm">€20 deposit required at booking</p>
               </div>
               

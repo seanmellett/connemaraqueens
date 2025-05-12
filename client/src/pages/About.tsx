@@ -1,5 +1,12 @@
 import { AlertCircle, AlertTriangle, CheckCheck } from "lucide-react";
 
+// Import bee images
+import beekeeperFrame from "@/assets/bees/beekeeper-frame.jpg";
+import beeInGreen from "@/assets/bees/bee-in-green.jpg";
+import beeWithPollen from "@/assets/bees/bee-with-pollen.jpg";
+import beeSideView from "@/assets/bees/bee-side-view.jpg";
+import beeOnLavender2 from "@/assets/bees/bee-on-lavender2.jpg";
+
 export default function About() {
   return (
     <section className="bg-white py-16">
@@ -13,9 +20,9 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div className="col-span-1">
               <img 
-                src="https://images.unsplash.com/photo-1620553967565-8e5d2e952195?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80" 
-                alt="Sean Mellett, Beekeeper" 
-                className="rounded-full w-64 h-64 object-cover mx-auto shadow-lg border-4 border-white"
+                src={beekeeperFrame} 
+                alt="Sean Mellett, Beekeeper inspecting a frame of bees" 
+                className="rounded-lg w-full h-auto object-cover mx-auto shadow-lg border-4 border-white"
               />
             </div>
             

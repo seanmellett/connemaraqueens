@@ -2,11 +2,17 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Leaf, Sprout, GraduationCap } from "lucide-react";
 
+// Import bee images
+import beesFlying from "@/assets/bees/flying-bees.jpg";
+import beeOnLavender from "@/assets/bees/bee-on-lavender.jpg";
+import beeOnDandelion from "@/assets/bees/bee-on-dandelion.jpg";
+import queenWithWorkers from "@/assets/bees/queen-with-workers.jpg";
+
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="hero-section" style={{ backgroundImage: `url('https://pixabay.com/get/g74c0303f98659e16f529c919a1b5c9d18ad34b105488d4b05b529990aa2dfb8bb82a34ffce2781ad2aff7975d29102252ef622ef8b5ce3efa06f5b8329a5a3b6_1280.jpg')` }}>
+      <section className="hero-section" style={{ backgroundImage: `url(${beesFlying})` }}>
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4">Native Irish Honeybees</h2>
@@ -56,6 +62,53 @@ export default function Home() {
               <h4 className="text-xl font-bold text-primary mb-2">Education</h4>
               <p>Sharing knowledge about native bees and their importance to Ireland's ecology.</p>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Photo Gallery Section */}
+      <section className="bg-[var(--color-neutral)] py-16">
+        <div className="container mx-auto px-4">
+          <h3 className="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-8">Native Irish Honeybees</h3>
+          <p className="text-lg text-center max-w-3xl mx-auto mb-12">
+            These beautiful pollinators are essential to Ireland's ecosystem and agriculture. Explore the beauty
+            and importance of our native honeybees through these images.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="overflow-hidden rounded-lg shadow-lg">
+              <img 
+                src={beeOnLavender} 
+                alt="Honeybee foraging on lavender" 
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            <div className="overflow-hidden rounded-lg shadow-lg">
+              <img 
+                src={beeOnDandelion} 
+                alt="Honeybee on dandelion" 
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            <div className="overflow-hidden rounded-lg shadow-lg">
+              <img 
+                src={queenWithWorkers} 
+                alt="Queen bee with worker bees" 
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+          
+          <div className="text-center mt-10">
+            <Button 
+              asChild
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-white"
+            >
+              <Link href="/about">Learn More About Native Irish Honeybees</Link>
+            </Button>
           </div>
         </div>
       </section>

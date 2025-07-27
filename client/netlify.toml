@@ -1,0 +1,11 @@
+[build]
+  command = "cd client && npm install && npx vite build --outDir ../netlify-dist"
+  publish = "netlify-dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

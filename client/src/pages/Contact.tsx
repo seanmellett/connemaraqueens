@@ -9,8 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { sendContactEmail, createMailtoLink } from "@/lib/emailjs-contact";
+import { sendFormspreeEmail, sendNetlifyForm } from "@/lib/formspree-contact";
 import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react";
-
 // Extended schema with validation
 const formSchema = insertContactSchema.extend({
   name: z.string().min(2, "Name is required"),
@@ -18,7 +19,6 @@ const formSchema = insertContactSchema.extend({
   subject: z.string().min(2, "Subject is required"),
   message: z.string().min(10, "Message must be at least 10 characters")
 });
-
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,22 +40,106 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      await apiRequest("POST", "/api/contact", data);
+      // Try EmailJS first (direct Gmail delivery - now configured!)
+      const emailSent = await sendContactEmail(data);
       
-      setIsSubmitted(true);
-      toast({
-        title: "Message Sent",
-        description: "Thank you for your message. We will get back to you soon!",
-      });
+      if (emailSent) {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent Successfully",
+          description: "Your message has been sent directly to our Gmail. We'll respond within 24 hours!",
+        });
+        form.reset();
+        return;
+      }
+      // Try Formspree second (backup)
+      const formspreeSent = await sendFormspreeEmail(data);
       
-      form.reset();
+      if (formspreeSent) {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent Successfully",
+          description: "Your message has been sent to our email. We'll respond within 24 hours!",
+        });
+        form.reset();
+        return;
+      }
+      // Try Netlify Forms third (another backup)
+      const netlifyFormSent = await sendNetlifyForm(data);
+      
+      if (netlifyFormSent) {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent Successfully", 
+          description: "Your message has been submitted. We'll respond within 24 hours!",
+        });
+        form.reset();
+        return;
+      }
+      // Try Netlify function fourth
+      let response;
+      try {
+        response = await fetch("/.netlify/functions/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        
+        if (response.ok) {
+          const result = await response.json();
+          setIsSubmitted(true);
+          toast({
+            title: "Message Logged",
+            description: `Message logged successfully. Reference: ${result.reference || 'N/A'}`,
+          });
+          form.reset();
+          return;
+        }
+      } catch (netlifyError) {
+        console.log('Netlify function not available, trying development API');
+      }
+      // Try development API
+      try {
+        await apiRequest("POST", "/api/contact", data);
+        setIsSubmitted(true);
+        toast({
+          title: "Message Received",
+          description: "Thank you for your message. We will get back to you soon!",
+        });
+        form.reset();
+        return;
+      } catch (apiError) {
+        console.log('Development API failed, using mailto fallback');
+      }
+      // All methods failed, use mailto fallback
+      const mailtoLink = createMailtoLink(data);
+      
+      const shouldSendEmail = confirm(
+        "We'll open your email client to send the message. Continue?"
+      );
+      
+      if (shouldSendEmail) {
+        window.open(mailtoLink, '_blank');
+        toast({
+          title: "Email Client Opened",
+          description: "Please send the email from your email client to complete your message.",
+        });
+        form.reset();
+        setIsSubmitted(true);
+      } else {
+        toast({
+          title: "Message Not Sent",
+          description: "You can contact us directly at info@connemaraqueens.ie or +353 87 326 8019",
+          variant: "destructive"
+        });
+      }
     } catch (error) {
+      console.error('Contact form error:', error);
       toast({
-        title: "Message Failed",
-        description: "There was a problem sending your message. Please try again.",
+        title: "Error",
+        description: "Something went wrong. Please try again or contact us directly.",
         variant: "destructive"
       });
-      console.error(error);
     } finally {
       setIsSubmitting(false);
     }

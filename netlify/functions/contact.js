@@ -25,6 +25,20 @@ exports.handler = async (event, context) => {
     console.log(`Message: ${message}`);
     console.log(`Time: ${new Date().toLocaleString()}`);
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    // Create email content for manual follow-up
+    const emailContent = {
+      from: name,
+      email: email,
+      phone: phone || 'Not provided',
+      subject: subject,
+      message: message,
+      timestamp: new Date().toISOString(),
+      reference: `MSG-${Date.now().toString().slice(-6)}`
+    };
+    // For now, we'll just log it. In a real implementation, you could:
+    // 1. Send via email service (when you get one working)
+    // 2. Store in a database
+    // 3. Send to a webhook service
     return {
       statusCode: 200,
       headers: {
@@ -35,7 +49,7 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ 
         success: true, 
         message: 'Contact message received successfully',
-        reference: `MSG-${Date.now().toString().slice(-6)}`
+        reference: emailContent.reference
       })
     };
   } catch (error) {

@@ -9,7 +9,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { sendContactEmail, createMailtoLink } from "@/lib/emailjs-contact";
 import { sendFormspreeEmail, sendNetlifyForm } from "@/lib/formspree-contact";
 import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react";
 // Extended schema with validation
@@ -19,6 +18,21 @@ const formSchema = insertContactSchema.extend({
   subject: z.string().min(2, "Subject is required"),
   message: z.string().min(10, "Message must be at least 10 characters")
 });
+// Simple mailto function without EmailJS
+const createMailtoLink = (formData: any): string => {
+  const subject = `[Connemara Queens] ${formData.subject}`;
+  const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
+Message:
+${formData.message}
+---
+Sent from Connemara Queens contact form
+${new Date().toLocaleString()}
+  `.trim();
+  return `mailto:info@connemaraqueens.ie?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -35,48 +49,12 @@ export default function Contact() {
     }
   });
   
-  // Handle form submission
+  // Handle form submission without EmailJS
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     
     try {
-      // Try EmailJS first (direct Gmail delivery - now configured!)
-      const emailSent = await sendContactEmail(data);
-      
-      if (emailSent) {
-        setIsSubmitted(true);
-        toast({
-          title: "Message Sent Successfully",
-          description: "Your message has been sent directly to our Gmail. We'll respond within 24 hours!",
-        });
-        form.reset();
-        return;
-      }
-      // Try Formspree second (backup)
-      const formspreeSent = await sendFormspreeEmail(data);
-      
-      if (formspreeSent) {
-        setIsSubmitted(true);
-        toast({
-          title: "Message Sent Successfully",
-          description: "Your message has been sent to our email. We'll respond within 24 hours!",
-        });
-        form.reset();
-        return;
-      }
-      // Try Netlify Forms third (another backup)
-      const netlifyFormSent = await sendNetlifyForm(data);
-      
-      if (netlifyFormSent) {
-        setIsSubmitted(true);
-        toast({
-          title: "Message Sent Successfully", 
-          description: "Your message has been submitted. We'll respond within 24 hours!",
-        });
-        form.reset();
-        return;
-      }
-      // Try Netlify function fourth
+      // Try Netlify function first
       let response;
       try {
         response = await fetch("/.netlify/functions/contact", {
@@ -89,14 +67,38 @@ export default function Contact() {
           const result = await response.json();
           setIsSubmitted(true);
           toast({
-            title: "Message Logged",
-            description: `Message logged successfully. Reference: ${result.reference || 'N/A'}`,
+            title: "Message Received",
+            description: `Your message has been logged successfully. We'll respond within 24 hours! Reference: ${result.reference || 'N/A'}`,
           });
           form.reset();
           return;
         }
       } catch (netlifyError) {
-        console.log('Netlify function not available, trying development API');
+        console.log('Netlify function not available, trying alternatives');
+      }
+      // Try Formspree backup
+      const formspreeSent = await sendFormspreeEmail(data);
+      
+      if (formspreeSent) {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent Successfully",
+          description: "Your message has been sent. We'll respond within 24 hours!",
+        });
+        form.reset();
+        return;
+      }
+      // Try Netlify Forms
+      const netlifyFormSent = await sendNetlifyForm(data);
+      
+      if (netlifyFormSent) {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent Successfully", 
+          description: "Your message has been submitted. We'll respond within 24 hours!",
+        });
+        form.reset();
+        return;
       }
       // Try development API
       try {
